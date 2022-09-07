@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Titles;
 use App\Http\Controllers\Api\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::post('/user', [Users::class, 'store']);
+
+Route::post('/login', [Users::class, 'login']);
+
+
+Route::group(['middleware' => ['auth:sanctum']], function(){
+
+    Route::get('/titles', [Titles::class, 'get']);
+    Route::post('/titles', [Titles::class, 'store']);
+    // Route::put('/titles/{id}', [Titles::class, 'put']);
+});
