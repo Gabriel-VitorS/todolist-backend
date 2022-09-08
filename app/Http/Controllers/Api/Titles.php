@@ -9,10 +9,27 @@ use Illuminate\Support\Facades\DB;
 
 class Titles extends Controller
 {
-    public function get(Request $request)
+    public function all(Request $request)
     {   
-        $user = $request->user();
-        return response()->json([$user->id], 200);
+        try{
+            $user = $request->user();
+            $titles = DB::table('titles')->where('id_user', '=', $user->id)->get();
+            
+            return response()->json(['Message' => 'Sucess', 'Data'=>$titles], 200);
+        }catch(\Exception $e){
+            return response()->json(['Message' => $e], 400);
+        }
+
+    }
+
+    public function get($id, Request $request)
+    {
+        try{
+            $title = Title::find($id);
+            return response()->json(['Message' => 'Sucess', 'Data'=>$title], 200);
+        }catch(\Exception $e){
+            return response()->json(['Message' => $e], 400);
+        }
     }
 
 

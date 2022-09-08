@@ -24,7 +24,8 @@ Route::post('/login', [Users::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
 
-    Route::get('/titles', [Titles::class, 'get']);
+    Route::get('/titles', [Titles::class, 'all']);
+    Route::get('/titles/{id}', [Titles::class, 'get']);
     Route::post('/titles', [Titles::class, 'store']);
     Route::put('/titles/{id}', [Titles::class, 'put']);
 });
