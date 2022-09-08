@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_title');
-            $table->foreign('id_title')->references('id')->on('titles');
-            $table->string('taks');
+            $table->foreign('id_title')->references('id')->on('titles')->onDelete('cascade');
+            $table->string('task');
             $table->boolean('done');
             $table->timestamps();
         });
