@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Tasks;
 use App\Http\Controllers\Api\Titles;
 use App\Http\Controllers\Api\Users;
 use Illuminate\Http\Request;
@@ -28,4 +29,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/titles/{id}', [Titles::class, 'get']);
     Route::post('/titles', [Titles::class, 'store']);
     Route::put('/titles/{id}', [Titles::class, 'put']);
+    Route::delete('/titles/{id}', [Titles::class, 'delete']);
+
+    // Route::get('/titles', [Titles::class, 'all']);
+    // Route::get('/titles/{id}', [Titles::class, 'get']);
+    // Route::post('/task', [Tasks::class, 'store']);
+    // Route::put('/titles/{id}', [Titles::class, 'put']);
 });

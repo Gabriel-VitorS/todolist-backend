@@ -72,4 +72,22 @@ class Titles extends Controller
         }
         
     }
+
+    public function delete($id,Request $request){
+
+        if(! $request->user())
+            return response(['Message' => "Invalid parameters"], 400);
+
+        
+        try{
+            $title = Title::find($id);
+            $title->delete();
+
+            return response()->json(['Message' => 'Sucess', 'id' => $title->id], 200 );
+
+        }catch(\Exception $e){
+            return response()->json(['Message' => $e], 400);
+        }
+        
+    }
 }
