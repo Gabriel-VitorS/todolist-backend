@@ -47,7 +47,7 @@ class Users extends Controller
             return response()->json(['Message' => "Invalid user"], 400);
 
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
 
         
@@ -84,7 +84,7 @@ class Users extends Controller
             return response()->json(['Message' => "Sucess", "Id" => $user->id ] , 200);
 
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
         
 
@@ -140,7 +140,7 @@ class Users extends Controller
             return response()->json(['Message' => 'Sucess'], 200);
 
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
         
     }
@@ -154,7 +154,7 @@ class Users extends Controller
 
             return response()->json(['Message' => 'Sucess'], 500);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
         
 

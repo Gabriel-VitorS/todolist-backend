@@ -17,7 +17,7 @@ class Titles extends Controller
             
             return response()->json(['Message' => 'Sucess', 'Data'=>$titles], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
 
     }
@@ -46,7 +46,7 @@ class Titles extends Controller
 
             return response()->json(['Message' => 'Sucess', 'Data'=>$title], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
     }
 
@@ -77,7 +77,7 @@ class Titles extends Controller
             return response()->json(['Message' => 'Sucess', 'id' => $title->id], 200);
 
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
         
     }
@@ -120,7 +120,7 @@ class Titles extends Controller
             return response()->json(['Message' => 'Sucess', 'id' => $id], 200 );
 
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
         
     }
@@ -158,7 +158,7 @@ class Titles extends Controller
             return response()->json(['Message' => 'Sucess', 'id' => $id], 200 );
 
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
         
     }

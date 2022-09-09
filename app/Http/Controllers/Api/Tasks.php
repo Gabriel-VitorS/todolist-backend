@@ -44,7 +44,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'Data' => $tasks], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
     }
 
@@ -85,7 +85,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'Data' => $task], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
     }
 
@@ -137,7 +137,7 @@ class Tasks extends Controller
     
             return response()->json(['Message' => 'Sucess', 'Id' => $task->id], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
         
 
@@ -199,7 +199,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'id' => $task->id], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
     }
 
@@ -256,7 +256,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'id' => $task->id], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
         }
     }
 }
