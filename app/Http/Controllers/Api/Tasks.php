@@ -44,7 +44,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'Data' => $tasks], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => $e], 400);
+            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
         }
     }
 
@@ -85,7 +85,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'Data' => $task], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => $e], 400);
+            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
         }
     }
 
@@ -119,10 +119,14 @@ class Tasks extends Controller
         try{
             $user = $request->user();
 
-            $title = Title::find($request->id_title);
+            $title = DB::table('titles')
+                ->where('id_user', '=', $user->id)
+                ->where('id', '=', $request->id_title)
+                ->first();
 
-            if(! $title)
+            if($title == '' || $title == null)
                 return response()->json(['Message' => 'Title not found'], 400);
+
     
             $task = new Task();
             $task->id_title = $request->id_title;
@@ -133,7 +137,7 @@ class Tasks extends Controller
     
             return response()->json(['Message' => 'Sucess', 'Id' => $task->id], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => $e], 400);
+            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
         }
         
 
@@ -175,7 +179,7 @@ class Tasks extends Controller
                 ->first();
 
             if($title == '' || $title == null)
-                return response()->json(['Message' => 'Invalid title'], 400);
+                return response()->json(['Message' => 'Title not found'], 400);
 
             $task = DB::table('tasks')
                 ->where('id_user', '=', $user->id)
@@ -195,7 +199,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'id' => $task->id], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => $e], 400);
+            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
         }
     }
 
@@ -209,13 +213,10 @@ class Tasks extends Controller
         $validator = Validator::make(
             [
                 'id_title' => $request->id_title,
-                'id' => $id,
-                'task' => $request->task
-            ],
+                'id' => $id,            ],
             [
                 'id_title' => 'required|numeric',
                 'id' => 'required|numeric',
-                'task' => 'required'
             ],[
                 'id_title.required' => 'Please enter a id_title',
                 'id_title.numeric' => 'Please enter a numeric in id_title',
@@ -255,7 +256,7 @@ class Tasks extends Controller
 
             return response()->json(['Message' => 'Sucess', 'id' => $task->id], 200);
         }catch(\Exception $e){
-            return response()->json(['Message' => $e], 400);
+            return response()->json(['Message' => 'Server error. Please contact the suporte'], 500);
         }
     }
 }
