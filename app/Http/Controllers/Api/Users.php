@@ -60,14 +60,17 @@ class Users extends Controller
         $validator = Validator::make(
             [
                 'email' => $request->email,     
-                'password' => $request->password,          
+                'password' => $request->password,  
+                'name' => $request->name        
             ],
             [
                 'email' => 'required',
                 'password' => 'required',
+                'name' => 'required'
             ],[
                 'email.required' => 'Please enter a email',
                 'password.required' => 'Please enter a password',
+                'name.required' => 'Please enter a password',
             ]);
 
         if($validator->fails())
