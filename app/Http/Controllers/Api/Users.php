@@ -93,6 +93,24 @@ class Users extends Controller
 
     }
 
+
+    public function checkEmail(Request $request){
+        try{
+            $email = DB::table('users')
+                ->where('email', '=', $request->email)->first();
+
+            //Return 0 or 1.
+            //If return 0 the email is valid
+            if($email == '')
+                return response()->json(['email' => '1'], 200);
+            else{
+                return response()->json(['email' => '0'], 200);
+            }
+        }catch(\Exception){
+            return response()->json(['Message' => 'Server error. Please contact the suport'], 500);
+        }
+    }
+
     public function put(Request $request)   {
         $userRequest = $request->user();
         $user = User::find($userRequest->id);

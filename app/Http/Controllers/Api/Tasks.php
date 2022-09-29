@@ -100,12 +100,14 @@ class Tasks extends Controller
         $rules = array(
             'id_title' => 'required',
             'id_title' => 'numeric',
-            'task' => 'required'
+            'task' => 'required',
+            'status' => 'required'
         );
         $message = array(
             'id_title.required' => 'Pleaser enter a id_title',
             'id_title.numeric' => 'Pleaser enter a number in id_title',
-            'task.required' => 'Please enter a task'
+            'task.required' => 'Please enter a task',
+            'status.required' => 'Please enter a status'
         );
 
         $validator = Validator::make($request->all(), $rules, $message);
@@ -132,7 +134,7 @@ class Tasks extends Controller
             $task->id_title = $request->id_title;
             $task->id_user = $user->id;
             $task->task = $request->task;
-            $task->done = false;
+            $task->done = $request->status;
             $task->save();
     
             return response()->json(['Message' => 'Sucess', 'Id' => $task->id], 200);
@@ -149,26 +151,29 @@ class Tasks extends Controller
      * @return json
      */
     public function put($id, Request $request){
-
+        // return response()->json($request->all());
         $validator = Validator::make(
             [
                 'id_title' => $request->id_title,
                 'id' => $id,
-                'task' => $request->task
+                'task' => $request->task,
+                'status' => $request->status
             ],
             [
                 'id_title' => 'required|numeric',
                 'id' => 'required|numeric',
-                'task' => 'required'
+                'task' => 'required',
+                'status' => 'required'
             ],[
                 'id_title.required' => 'Please enter a id_title',
                 'id_title.numeric' => 'Please enter a numeric in id_title',
                 'id.numeric' => 'Please enter a numeric in id',
-                'task.required' => 'Please enter a task'
+                'task.required' => 'Please enter a task',
+                'status.required' => 'Please enter a status',
             ]);
 
         if($validator->fails())
-            return response()->json(['Message' => $validator], 400);
+            return response()->json(['Message' => $validator->messages()], 400);
 
         try{
             $user = $request->user();
@@ -194,7 +199,7 @@ class Tasks extends Controller
                 ->where('id_user', '=', $user->id)
                 ->where('id_title', '=', $request->id_title)
                 ->where('id', '=', $id)
-                ->update(array('task' => $request->task));
+                ->update(array('task' => $request->task, 'done' => $request->status));
 
 
             return response()->json(['Message' => 'Sucess', 'id' => $task->id], 200);
